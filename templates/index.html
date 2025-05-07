@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pronunciation Trainer</title>
+  <link rel="stylesheet" href="static/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      z-index: 9999;
+    }
+  </style>
+  <script>
+    {% if not name %}
+    document.addEventListener("DOMContentLoaded", () => {
+      const loading = document.createElement("div");
+      loading.id = "loading";
+      loading.innerText = "Redirecting to login...";
+      document.body.appendChild(loading);
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500);
+    });
+    {% endif %}
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Language Trainer</h1>
+
+    <p>Welcome, <strong>{{ name }}</strong>! <a href="/logout">Logout</a></p>
+
+    <!-- <div style="margin-bottom: 1em;">
+      <label>Choose language:</label><br />
+      <label><input type="radio" name="language" value="en-IN" checked> English</label>
+      <label style="margin-left: 10px;"><input type="radio" name="language" value="de-DE"> German</label>
+    </div> -->
+
+    <div>
+      <label for="phraseSelect">Choose a phrase:</label>
+      <select id="phraseSelect"></select>
+    </div>
+
+    <div class="phrase-display">
+      <p><strong>Phrase:</strong> <span id="englishText"></span></p>
+      <!-- <p><strong>Target:</strong> <span id="targetText"></span></p> -->
+    </div>
+
+    <div class="controls">
+      <button onclick="playPhrase()">🔊 Play</button>
+      <button onclick="recordSpeech()">🎙️ Record</button>
+      <select id="modeToggle">
+        <option value="browser">Browser API (Free)</option>
+        <option value="whisper">OpenAI Whisper</option>
+        <!-- <option value="local-whisper">Local Whisper (Free)</option>
+        <option value="whisperx">WhisperX (Free)</option> -->
+        <option value="fast-whisper">Fast Whisper (Free)</option>
+        <option value="azure">Azure STT</option>
+      </select>
+    </div>
+
+    <div id="feedback"></div>
+    <canvas id="scoreChart" style="margin-top: 30px;"></canvas>
+  </div>
+
+  <script>
+    // Wrap JS to ensure DOM is ready
+    document.addEventListener("DOMContentLoaded", () => {
+      updatePhraseOptions(); // this function should exist in script.js
+    });
+  </script>
+  <script src="static/script.js"></script>
+</body>
+
+</html>

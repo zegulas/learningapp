@@ -1,0 +1,11 @@
+Flask==3.1.0
+flask-cors==5.0.1
+Flask-Login
+Authlib
+python-dotenv
+requests
+openai>=1.0.0
+redis
+ffmpeg-python
+faster-whisper
+torch
