@@ -43,30 +43,36 @@
 
     <p>Welcome, <strong>{{ name }}</strong>! <a href="/logout">Logout</a></p>
 
-    <!-- <div style="margin-bottom: 1em;">
-      <label>Choose language:</label><br />
-      <label><input type="radio" name="language" value="en-IN" checked> English</label>
-      <label style="margin-left: 10px;"><input type="radio" name="language" value="de-DE"> German</label>
-    </div> -->
+    <!-- Native Language Selector -->
+    <div style="margin-bottom: 1em;">
+      <label for="nativeLangSelect">Choose your native language:</label>
+      <select id="nativeLangSelect">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="mr">Marathi</option>
+      </select>
+    </div>
 
+    <!-- Phrase Selector -->
     <div>
       <label for="phraseSelect">Choose a phrase:</label>
       <select id="phraseSelect"></select>
     </div>
 
+    <!-- Phrase Display Section -->
     <div class="phrase-display">
-      <p><strong>Phrase:</strong> <span id="englishText"></span></p>
-      <!-- <p><strong>Target:</strong> <span id="targetText"></span></p> -->
+      <p><strong><span id="nativeLangLabel">Your Language</span>:</strong> <span id="englishText"></span></p>
+      <p><strong>German:</strong> <span id="targetText"></span></p>
+      <p><strong>German (Phonetic):</strong> <span id="phoneticTargetText"></span></p>
     </div>
 
+    <!-- Controls -->
     <div class="controls">
       <button onclick="playPhrase()">🔊 Play</button>
       <button onclick="recordSpeech()">🎙️ Record</button>
       <select id="modeToggle">
         <option value="browser">Browser API (Free)</option>
         <option value="whisper">OpenAI Whisper</option>
-        <!-- <option value="local-whisper">Local Whisper (Free)</option>
-        <option value="whisperx">WhisperX (Free)</option> -->
         <option value="fast-whisper">Fast Whisper (Free)</option>
         <option value="azure">Azure STT</option>
       </select>
@@ -77,9 +83,9 @@
   </div>
 
   <script>
-    // Wrap JS to ensure DOM is ready
     document.addEventListener("DOMContentLoaded", () => {
-      updatePhraseOptions(); // this function should exist in script.js
+      updatePhraseOptions();
+      document.getElementById("nativeLangSelect").addEventListener("change", updatePhraseOptions);
     });
   </script>
   <script src="static/script.js"></script>

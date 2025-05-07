@@ -38,7 +38,7 @@ CORS(app, supports_credentials=True)
 app.secret_key = SECRET_KEY
 
 # Redis setup
-redis_client = redis.Redis(host='redis', port=6379, decode_responses=True)
+redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
 # OpenAI client
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
@@ -87,7 +87,8 @@ if device == "cuda":
 else:
     print("[INFO] CUDA is not available. Falling back to CPU.")
 
-fast_whisper_model = WhisperModel("small", device=device, compute_type="int8")
+fast_whisper_model = WhisperModel("tiny", device=device, compute_type="int8")
+# fast_whisper_model = WhisperModel("small", device=device, compute_type="int8")
 
 @app.route("/")
 def home():
