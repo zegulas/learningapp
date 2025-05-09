@@ -6,6 +6,4 @@ python-dotenv
 requests
 openai>=1.0.0
 redis
-ffmpeg-python
 faster-whisper
-torch

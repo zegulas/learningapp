@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 import redis
 import openai
 from faster_whisper import WhisperModel
-import torch
+# import torch
 
 print(f"PID: {os.getpid()}")
 
@@ -80,8 +80,8 @@ def is_rate_limited(user_key, limit, interval):
     return current > limit
 
 # Model setup
-device = "cuda" if torch.cuda.is_available() else "cpu"
-# device = "cpu"
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+device = "cpu"
 if device == "cuda":
     print(f"[INFO] CUDA is available. Using device: {torch.cuda.get_device_name(0)}")
 else:
