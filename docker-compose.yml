@@ -25,16 +25,3 @@ services:
     ports:
       - "6379:6379"
     restart: unless-stopped
-
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: whisper_jenkins
-    ports:
-      - "8080:8080"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - ./learningapp:/app/learningapp
-    restart: unless-stopped
-
-volumes:
-  jenkins_home:
