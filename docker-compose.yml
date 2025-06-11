@@ -19,14 +19,13 @@ services:
       timeout: 10s
       retries: 3
 
-
   redis:
     image: redis:alpine
     container_name: whisper_redis
     ports:
       - "6379:6379"
     restart: unless-stopped
-  
+
   jenkins:
     image: jenkins/jenkins:lts
     container_name: whisper_jenkins
@@ -36,5 +35,5 @@ services:
       - jenkins_home:/var/jenkins_home
     restart: unless-stopped
 
-  volumes:
-    jenkins_home:
+volumes:
+  jenkins_home:
