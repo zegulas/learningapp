@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // This will automatically check out the `dev` branch when triggered via webhook
-                git branch: 'dev', url: 'https://github.com/your-username/your-repo.git'
+                git branch: 'dev', url: 'https://github.com/zegulas/learningapp.git'
             }
         }
 
